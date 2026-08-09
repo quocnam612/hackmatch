@@ -1,0 +1,12 @@
+{
+  "team_name": "",
+  "project_name": "hackmatch",
+  "challenge": "SPD Challenge 2026",
+  "organizer": "Trường ĐH Khoa học Tự nhiên, ĐHQG-HCM",
+  "application_context": "Hackathon/project team-matching platform: users register skills, host projects (with AI-assisted or manual required-skill entry), and request to join teams that the matching engine validates against skill and soft-skill constraints.",
+  "repository_url": "https://github.com/quocnam612/hackmatch",
+  "members": [],
+  "tech_stack": ["Next.js", "TypeScript", "Tailwind CSS", "OpenAI API"],
+  "description": "Team-Matching prototype for SPD Challenge 2026.",
+  "submitted_at": ""
+}
