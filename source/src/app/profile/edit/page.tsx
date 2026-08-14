@@ -96,6 +96,12 @@ function ProfileForm({ initialUser }: { userId: string; initialUser: UserProfile
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-6 px-6 py-12">
       <SectionHeading title={t("profile.editTitle")} subtitle={t("profile.editSubtitle")} />
+      {initialUser.hardSkills.length === 0 && (
+        <div className="flex flex-col gap-1 rounded-2xl border border-accent/25 bg-accent/8 p-4">
+          <p className="text-sm font-medium text-accent">{t("profile.completeSkillsTitle")}</p>
+          <p className="text-sm text-muted">{t("profile.completeSkillsDesc")}</p>
+        </div>
+      )}
       <Card>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <TextField label={t("common.name")} value={name} onChange={(e) => setName(e.target.value)} />
@@ -113,8 +119,8 @@ function ProfileForm({ initialUser }: { userId: string; initialUser: UserProfile
           <HardSkillInput value={hardSkills} onChange={setHardSkills} />
           <SoftSkillPicker value={softSkills} onChange={setSoftSkills} />
           <LanguagePicker value={languages} onChange={setLanguages} />
-          <div className="flex flex-col gap-3 rounded-xl border border-dashed border-black/10 p-4 dark:border-white/15">
-            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{t("profile.changePassword")}</p>
+          <div className="flex flex-col gap-3 rounded-xl border border-dashed border-surface-border p-4">
+            <p className="text-sm font-medium text-foreground">{t("profile.changePassword")}</p>
             <TextField
               label={t("profile.currentPassword")}
               type="password"
@@ -129,8 +135,8 @@ function ProfileForm({ initialUser }: { userId: string; initialUser: UserProfile
               onChange={(e) => setNewPassword(e.target.value)}
             />
           </div>
-          {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
-          {success && <p className="text-sm text-emerald-600 dark:text-emerald-400">{success}</p>}
+          {error && <p className="text-sm text-danger">{error}</p>}
+          {success && <p className="text-sm text-success">{success}</p>}
           <Button type="submit" disabled={loading}>
             {loading ? t("common.saving") : t("common.save")}
           </Button>

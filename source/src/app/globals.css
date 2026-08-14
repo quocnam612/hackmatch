@@ -5,25 +5,65 @@
    tracks this class instead of only `prefers-color-scheme`. */
 @custom-variant dark (&:is(.dark *));
 
+/* Apple-style design tokens: a neutral off-white canvas with a raised white
+   surface for cards, a single accent blue, and a muted secondary-text gray —
+   mirrors macOS/iOS system colors rather than an arbitrary brand palette. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-border: rgba(0, 0, 0, 0.08);
+  --muted: #6e6e73;
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --accent-foreground: #ffffff;
+  --danger: #ff3b30;
+  --success: #34c759;
+}
+
+:root.dark {
+  --background: #000000;
+  --foreground: #f5f5f7;
+  --surface: #1c1c1e;
+  --surface-raised: #2c2c2e;
+  --surface-border: rgba(255, 255, 255, 0.1);
+  --muted: #98989d;
+  --accent: #2997ff;
+  --accent-hover: #47a2ff;
+  --accent-foreground: #ffffff;
+  --danger: #ff453a;
+  --success: #30d158;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-border: var(--surface-border);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-:root.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
 }

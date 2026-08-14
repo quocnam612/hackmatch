@@ -11,13 +11,13 @@ export function LanguageToggle() {
   }, [lang]);
 
   return (
-    <div className="flex items-center rounded-full border border-black/10 p-0.5 text-xs font-semibold dark:border-white/10">
+    <div className="flex items-center rounded-full border border-surface-border p-0.5 text-xs font-semibold">
       <button
         type="button"
         onClick={() => setLang("vi")}
         aria-pressed={lang === "vi"}
         className={`rounded-full px-2 py-1 transition-colors ${
-          lang === "vi" ? "bg-indigo-600 text-white" : "text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100"
+          lang === "vi" ? "bg-accent text-white" : "text-muted hover:text-foreground"
         }`}
       >
         VI
@@ -27,7 +27,7 @@ export function LanguageToggle() {
         onClick={() => setLang("en")}
         aria-pressed={lang === "en"}
         className={`rounded-full px-2 py-1 transition-colors ${
-          lang === "en" ? "bg-indigo-600 text-white" : "text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100"
+          lang === "en" ? "bg-accent text-white" : "text-muted hover:text-foreground"
         }`}
       >
         EN

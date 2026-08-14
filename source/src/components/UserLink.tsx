@@ -15,7 +15,7 @@ export function UserLink({
   return (
     <Link
       href={`/users/${userId}`}
-      className={`inline-flex items-center gap-2 hover:text-indigo-600 hover:underline dark:hover:text-indigo-400 ${className}`}
+      className={`inline-flex items-center gap-2 hover:text-accent hover:underline dark:hover:text-accent ${className}`}
     >
       {showAvatar && <Avatar userId={userId} name={name} size="sm" />}
       {name}

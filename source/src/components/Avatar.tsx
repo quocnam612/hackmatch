@@ -1,4 +1,4 @@
-const COLORS = ["bg-indigo-500", "bg-violet-500", "bg-fuchsia-500", "bg-rose-500", "bg-amber-500", "bg-emerald-500", "bg-teal-500", "bg-sky-500"];
+const COLORS = ["bg-accent", "bg-violet-500", "bg-fuchsia-500", "bg-rose-500", "bg-amber-500", "bg-emerald-500", "bg-teal-500", "bg-sky-500"];
 
 function colorForId(id: string): string {
   let hash = 0;

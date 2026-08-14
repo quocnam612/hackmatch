@@ -48,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             execute once via the browser's own HTML parser. */}
         <script id="theme-init" dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
+      <body className="min-h-full flex flex-col bg-background">
         <Header />
         <div className="flex flex-1">
           <LeftSidebar />

@@ -50,10 +50,10 @@ export default function PublicProfilePage() {
         <div className="flex items-center gap-4">
           <Avatar userId={user.id} name={user.name} size="lg" />
           <div className="flex flex-col gap-1">
-            <h1 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">{user.name}</h1>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">@{user.username}</p>
+            <h1 className="text-xl font-semibold text-foreground">{user.name}</h1>
+            <p className="text-sm text-muted">@{user.username}</p>
             {user.location && (
-              <p className="flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="flex items-center gap-1 text-sm text-muted">
                 <PinIcon /> {user.location}
               </p>
             )}
@@ -62,7 +62,7 @@ export default function PublicProfilePage() {
                 href={user.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-sm text-zinc-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400"
+                className="flex items-center gap-1 text-sm text-muted hover:text-accent"
               >
                 <GithubIcon /> GitHub
               </a>
@@ -70,7 +70,7 @@ export default function PublicProfilePage() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">
+          <span className="text-sm text-muted">
             {user.followedBy.length} {t("common.followers")}
           </span>
           {isSelf ? (
@@ -84,7 +84,7 @@ export default function PublicProfilePage() {
       </Card>
 
       <Card className="flex flex-col gap-4">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">
           {t("common.hardSkills")}
         </h3>
         <div className="flex flex-wrap gap-1.5">
@@ -123,9 +123,9 @@ export default function PublicProfilePage() {
                 <Link
                   key={project.id}
                   href={`/projects/${project.id}`}
-                  className="flex flex-col gap-1 rounded-2xl border border-black/10 bg-white/70 p-4 hover:shadow-md dark:border-white/10 dark:bg-white/5"
+                  className="flex flex-col gap-1 rounded-2xl border border-surface-border bg-surface/70 p-4 hover:shadow-md"
                 >
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{project.title}</span>
+                  <span className="text-sm font-semibold text-foreground">{project.title}</span>
                   {roleName && <Badge tone="accent">{roleName}</Badge>}
                 </Link>
               );

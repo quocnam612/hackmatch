@@ -40,7 +40,7 @@ export function ProjectBrowser() {
             type="button"
             onClick={() => setCategory("all")}
             className={`rounded-full px-3 py-1.5 text-xs font-medium ${
-              category === "all" ? "bg-indigo-600 text-white" : "bg-zinc-100 text-zinc-600 dark:bg-white/10 dark:text-zinc-300"
+              category === "all" ? "bg-accent text-white" : "bg-black/[0.05] text-muted dark:bg-white/10"
             }`}
           >
             {t("projects.all")}
@@ -51,7 +51,7 @@ export function ProjectBrowser() {
               key={c.id}
               onClick={() => setCategory(c.id)}
               className={`rounded-full px-3 py-1.5 text-xs font-medium ${
-                category === c.id ? "bg-indigo-600 text-white" : "bg-zinc-100 text-zinc-600 dark:bg-white/10 dark:text-zinc-300"
+                category === c.id ? "bg-accent text-white" : "bg-black/[0.05] text-muted dark:bg-white/10"
               }`}
             >
               {t(`category.${c.id}`)}

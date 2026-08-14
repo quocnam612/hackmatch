@@ -36,11 +36,11 @@ export default function MyRequestsPage() {
                 <div className="flex flex-col">
                   <Link
                     href={`/projects/${r.projectId}`}
-                    className="text-sm font-medium text-zinc-900 hover:text-indigo-600 dark:text-zinc-50 dark:hover:text-indigo-400"
+                    className="text-sm font-medium text-foreground hover:text-accent"
                   >
                     {project?.title ?? "?"}
                   </Link>
-                  <span className="text-xs text-zinc-400">
+                  <span className="text-xs text-muted/70">
                     {roleName && `${roleName} · `}
                     {isInvite ? t("findTeam.youWereInvited") : t("projects.applied")}
                   </span>

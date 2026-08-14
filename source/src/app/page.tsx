@@ -8,9 +8,9 @@ import { Button, Card } from "@/components/ui/Primitives";
 
 function StatTile({ value, label }: { value: number; label: string }) {
   return (
-    <div className="flex flex-col items-center gap-1 rounded-2xl border border-black/10 bg-white/70 py-5 dark:border-white/10 dark:bg-white/5">
-      <span className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">{value}</span>
-      <span className="text-xs text-zinc-500 dark:text-zinc-400">{label}</span>
+    <div className="flex flex-col items-center gap-1 rounded-2xl border border-surface-border bg-surface/70 py-5">
+      <span className="text-2xl font-semibold text-foreground">{value}</span>
+      <span className="text-xs text-muted">{label}</span>
     </div>
   );
 }
@@ -34,11 +34,11 @@ export default function Home() {
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-10 px-6 py-12">
       <div className="flex flex-col gap-4 text-center sm:text-left">
-        <span className="inline-flex w-fit items-center gap-2 self-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-400 sm:self-start">
+        <span className="inline-flex w-fit items-center gap-2 self-center rounded-full bg-accent/12 px-3 py-1 text-xs font-medium text-accent sm:self-start">
           {t("home.badge")}
         </span>
-        <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">{t("home.title")}</h1>
-        <p className="max-w-xl text-zinc-500 dark:text-zinc-400 sm:text-lg">
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{t("home.title")}</h1>
+        <p className="max-w-xl text-muted sm:text-lg">
           {currentUser ? `${t("home.welcomeBack")}, ${currentUser.name}.` : t("home.subtitleGuest")}
         </p>
         <div className="flex justify-center gap-3 sm:justify-start">
@@ -60,8 +60,8 @@ export default function Home() {
 
       <div className="grid gap-4 sm:grid-cols-3">
         <Card className="flex flex-col gap-2">
-          <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">{t("home.step1Title")}</h3>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{t("home.step1Desc")}</p>
+          <h3 className="font-semibold text-foreground">{t("home.step1Title")}</h3>
+          <p className="text-sm text-muted">{t("home.step1Desc")}</p>
           <Link href="/register">
             <Button variant="secondary" className="mt-2">
               {t("auth.register")}
@@ -69,8 +69,8 @@ export default function Home() {
           </Link>
         </Card>
         <Card className="flex flex-col gap-2">
-          <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">{t("home.step2Title")}</h3>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{t("home.step2Desc")}</p>
+          <h3 className="font-semibold text-foreground">{t("home.step2Title")}</h3>
+          <p className="text-sm text-muted">{t("home.step2Desc")}</p>
           <Link href="/projects">
             <Button variant="secondary" className="mt-2">
               {t("nav.projects")}
@@ -78,8 +78,8 @@ export default function Home() {
           </Link>
         </Card>
         <Card className="flex flex-col gap-2">
-          <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">{t("home.step3Title")}</h3>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{t("home.step3Desc")}</p>
+          <h3 className="font-semibold text-foreground">{t("home.step3Title")}</h3>
+          <p className="text-sm text-muted">{t("home.step3Desc")}</p>
           <Link href="/find-team">
             <Button variant="secondary" className="mt-2">
               {t("home.findTeam")}

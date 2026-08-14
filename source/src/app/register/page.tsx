@@ -6,9 +6,7 @@ import { addUser, isUsernameTaken, setCurrentUser, useDB } from "@/lib/store";
 import { hashPassword } from "@/lib/auth";
 import { suggestUsername } from "@/lib/slug";
 import { useT } from "@/lib/i18n";
-import { HardSkillInput, LanguagePicker, SoftSkillPicker } from "@/components/ui/SkillPickers";
 import { Button, Card, SectionHeading, TextField } from "@/components/ui/Primitives";
-import type { LanguageId, SoftSkillId } from "@/types";
 
 const USERNAME_PATTERN = /^[a-z0-9_]{3,20}$/;
 
@@ -19,13 +17,8 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [usernameTouched, setUsernameTouched] = useState(false);
-  const [location, setLocation] = useState("");
-  const [githubUrl, setGithubUrl] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [hardSkills, setHardSkills] = useState<string[]>([]);
-  const [softSkills, setSoftSkills] = useState<SoftSkillId[]>([]);
-  const [languages, setLanguages] = useState<LanguageId[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -54,27 +47,21 @@ export default function RegisterPage() {
       setError("Passwords don't match.");
       return;
     }
-    if (hardSkills.length === 0) {
-      setError("Add at least one hard skill.");
-      return;
-    }
     setLoading(true);
     try {
       const passwordHash = await hashPassword(password);
       const user = addUser({
         name: name.trim(),
         username: finalUsername,
-        location: location.trim() || undefined,
-        githubUrl: githubUrl.trim() || undefined,
-        hardSkills,
-        softSkills,
-        languages,
+        hardSkills: [],
+        softSkills: [],
+        languages: [],
         passwordHash,
         followedBy: [],
         isSeed: false,
       });
       setCurrentUser(user.id);
-      router.push("/");
+      router.push("/profile/edit");
     } finally {
       setLoading(false);
     }
@@ -95,18 +82,6 @@ export default function RegisterPage() {
             }}
           />
           <TextField
-            label={`${t("common.location")} (${t("common.optional")})`}
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            placeholder="e.g. TP. Hồ Chí Minh"
-          />
-          <TextField
-            label={`${t("common.github")} (${t("common.optional")})`}
-            value={githubUrl}
-            onChange={(e) => setGithubUrl(e.target.value)}
-            placeholder="https://github.com/username"
-          />
-          <TextField
             label={t("common.password")}
             type="password"
             value={password}
@@ -118,10 +93,7 @@ export default function RegisterPage() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <HardSkillInput value={hardSkills} onChange={setHardSkills} />
-          <SoftSkillPicker value={softSkills} onChange={setSoftSkills} />
-          <LanguagePicker value={languages} onChange={setLanguages} />
-          {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+          {error && <p className="text-sm text-danger">{error}</p>}
           <Button type="submit" disabled={loading}>
             {loading ? t("common.saving") : t("profile.createTitle")}
           </Button>

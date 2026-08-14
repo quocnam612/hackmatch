@@ -16,23 +16,23 @@ export function Header() {
   const currentUser = db.users.find((u) => u.id === db.currentUserId);
 
   return (
-    <header className="sticky top-0 z-10 border-b border-black/10 bg-white/80 backdrop-blur-sm dark:border-white/10 dark:bg-black/60">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
-        <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-          <Logo size={32} />
+    <header className="sticky top-0 z-10 border-b border-surface-border bg-surface/70 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3.5">
+        <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground">
+          <Logo size={30} />
           HackMatch
         </Link>
-        <nav className="hidden items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-300 sm:flex">
-          <Link href="/" className="hover:text-indigo-600 dark:hover:text-indigo-400">
+        <nav className="hidden items-center gap-6 text-[13px] font-medium text-muted sm:flex">
+          <Link href="/" className="transition-colors hover:text-foreground">
             {t("nav.home")}
           </Link>
-          <Link href="/projects" className="hover:text-indigo-600 dark:hover:text-indigo-400">
+          <Link href="/projects" className="transition-colors hover:text-foreground">
             {t("nav.projects")}
           </Link>
-          <Link href="/find-team" className="hover:text-indigo-600 dark:hover:text-indigo-400">
+          <Link href="/find-team" className="transition-colors hover:text-foreground">
             {t("nav.findTeam")}
           </Link>
-          <Link href="/my-requests" className="hover:text-indigo-600 dark:hover:text-indigo-400">
+          <Link href="/my-requests" className="transition-colors hover:text-foreground">
             {t("nav.myRequests")}
           </Link>
         </nav>

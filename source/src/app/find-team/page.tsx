@@ -39,7 +39,7 @@ function OpportunitiesPanel({ currentUserId, currentUserName }: { currentUserId:
 
   return (
     <div className="flex flex-col gap-6">
-      <p className="text-sm text-zinc-500 dark:text-zinc-400">
+      <p className="text-sm text-muted">
         {t("findTeam.subtitlePrefix")} {currentUserName}.
       </p>
 
@@ -51,7 +51,7 @@ function OpportunitiesPanel({ currentUserId, currentUserName }: { currentUserId:
               type="button"
               onClick={() => setGapFilter(f.key)}
               className={`rounded-full px-3 py-1.5 text-xs font-medium ${
-                gapFilter === f.key ? "bg-indigo-600 text-white" : "bg-zinc-100 text-zinc-600 dark:bg-white/10 dark:text-zinc-300"
+                gapFilter === f.key ? "bg-accent text-white" : "bg-black/[0.05] text-muted dark:bg-white/10"
               }`}
             >
               {f.label}
@@ -75,11 +75,11 @@ function OpportunitiesPanel({ currentUserId, currentUserName }: { currentUserId:
                   <div className="flex flex-col gap-0.5">
                     <Link
                       href={`/projects/${project.id}`}
-                      className="text-base font-semibold text-zinc-900 hover:text-indigo-600 dark:text-zinc-50 dark:hover:text-indigo-400"
+                      className="text-base font-semibold text-foreground hover:text-accent"
                     >
                       {project.title}
                     </Link>
-                    <span className="text-sm text-zinc-500 dark:text-zinc-400">{role.name}</span>
+                    <span className="text-sm text-muted">{role.name}</span>
                   </div>
                   <Badge tone={gap === 0 ? "success" : "accent"}>
                     {gap === 0 ? t("findTeam.fullyMatched") : `${t("findTeam.missingN")} ${gap}`}
@@ -89,11 +89,11 @@ function OpportunitiesPanel({ currentUserId, currentUserName }: { currentUserId:
                   <Badge tone="accent">{t(`category.${project.category}`)}</Badge>
                   {project.location && <Badge>{project.location}</Badge>}
                   {project.deadline && <Badge>{project.deadline}</Badge>}
-                  <span className="text-xs text-zinc-400">
+                  <span className="text-xs text-muted/70">
                     {t("projects.hostedBy")} {owner ? <UserLink userId={owner.id} name={owner.name} /> : "?"}
                   </span>
                 </div>
-                <p className="line-clamp-2 text-sm text-zinc-500 dark:text-zinc-400">{project.ideaDescription}</p>
+                <p className="line-clamp-2 text-sm text-muted">{project.ideaDescription}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {matchedSkills.map((s) => (
                     <Badge key={s} tone="success">
@@ -187,14 +187,14 @@ function RecruitPanel({ currentUserId }: { currentUserId: string }) {
     <div className="flex flex-col gap-4">
       {myProjects.length > 1 && (
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{t("findTeam.selectProject")}</span>
+          <span className="text-sm font-medium text-foreground">{t("findTeam.selectProject")}</span>
           <select
             value={project?.id ?? ""}
             onChange={(e) => {
               setSelectedProjectId(e.target.value);
               setSelectedRoleId("");
             }}
-            className="rounded-xl border border-black/10 bg-white px-3.5 py-2.5 text-sm text-zinc-900 outline-none ring-indigo-500 focus:ring-2 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100"
+            className="rounded-xl border border-surface-border bg-black/[0.03] px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-accent/40 focus:bg-surface focus:ring-4 focus:ring-accent/15 dark:bg-white/[0.05] dark:focus:bg-surface"
           >
             {myProjects.map((p) => (
               <option key={p.id} value={p.id}>
@@ -216,7 +216,7 @@ function RecruitPanel({ currentUserId }: { currentUserId: string }) {
                 type="button"
                 onClick={() => setSelectedRoleId(role.id)}
                 className={`rounded-full px-3 py-1.5 text-xs font-medium ${
-                  activeRole?.id === role.id ? "bg-indigo-600 text-white" : "bg-zinc-100 text-zinc-600 dark:bg-white/10 dark:text-zinc-300"
+                  activeRole?.id === role.id ? "bg-accent text-white" : "bg-black/[0.05] text-muted dark:bg-white/10"
                 }`}
               >
                 {role.name}
@@ -231,7 +231,7 @@ function RecruitPanel({ currentUserId }: { currentUserId: string }) {
               {ranked.map(({ user, matchedSkills, missingSkills }) => {
                 const existingRequest = db.requests.find((r) => r.projectId === project.id && r.userId === user.id);
                 return (
-                  <li key={user.id} className="flex flex-col gap-2 rounded-xl border border-black/10 p-3 text-sm dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">
+                  <li key={user.id} className="flex flex-col gap-2 rounded-xl border border-surface-border p-3 text-sm sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-2">
                       <Avatar userId={user.id} name={user.name} size="sm" />
                       <UserLink userId={user.id} name={user.name} />
@@ -306,14 +306,14 @@ export default function FindTeamPage() {
     <div className="mx-auto flex max-w-3xl flex-col gap-6 px-6 py-12">
       <SectionHeading title={t("findTeam.title")} />
 
-      <div className="flex gap-1.5 border-b border-black/10 dark:border-white/10">
+      <div className="flex gap-1.5 border-b border-surface-border">
         <button
           type="button"
           onClick={() => setTab("opportunities")}
           className={`px-3 py-2 text-sm font-medium ${
             tab === "opportunities"
-              ? "border-b-2 border-indigo-600 text-indigo-600 dark:text-indigo-400"
-              : "text-zinc-500 dark:text-zinc-400"
+              ? "border-b-2 border-accent text-accent dark:text-accent"
+              : "text-muted"
           }`}
         >
           {t("findTeam.tabOpportunities")}
@@ -322,7 +322,7 @@ export default function FindTeamPage() {
           type="button"
           onClick={() => setTab("recruit")}
           className={`px-3 py-2 text-sm font-medium ${
-            tab === "recruit" ? "border-b-2 border-indigo-600 text-indigo-600 dark:text-indigo-400" : "text-zinc-500 dark:text-zinc-400"
+            tab === "recruit" ? "border-b-2 border-accent text-accent dark:text-accent" : "text-muted"
           }`}
         >
           {t("findTeam.tabRecruit")}

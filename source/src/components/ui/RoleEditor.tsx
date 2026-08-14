@@ -27,11 +27,11 @@ export function RoleEditor({ roles, onChange }: { roles: ProjectRole[]; onChange
 
   return (
     <div className="flex flex-col gap-3">
-      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{t("projects.rolesHeading")}</span>
-      {roles.length === 0 && <p className="text-xs text-zinc-500 dark:text-zinc-400">{t("projects.noRolesYet")}</p>}
+      <span className="text-sm font-medium text-foreground">{t("projects.rolesHeading")}</span>
+      {roles.length === 0 && <p className="text-xs text-muted">{t("projects.noRolesYet")}</p>}
       <div className="flex flex-col gap-4">
         {roles.map((role, index) => (
-          <div key={role.id} className="flex flex-col gap-2 rounded-xl border border-black/10 p-3 dark:border-white/10">
+          <div key={role.id} className="flex flex-col gap-2 rounded-xl border border-surface-border p-3">
             <div className="flex items-center gap-2">
               <TextField
                 value={role.name}

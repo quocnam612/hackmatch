@@ -112,11 +112,11 @@ export default function NewProjectPage() {
             placeholder="What are you building, and why?"
           />
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{t("projects.category")}</span>
+            <span className="text-sm font-medium text-foreground">{t("projects.category")}</span>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as ProjectCategory)}
-              className="rounded-xl border border-black/10 bg-white px-3.5 py-2.5 text-sm text-zinc-900 outline-none ring-indigo-500 focus:ring-2 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100"
+              className="rounded-xl border border-surface-border bg-black/[0.03] px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-accent/40 focus:bg-surface focus:ring-4 focus:ring-accent/15 dark:bg-white/[0.05] dark:focus:bg-surface"
             >
               {PROJECT_CATEGORIES.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -158,11 +158,11 @@ export default function NewProjectPage() {
             <Button type="button" variant="secondary" onClick={handleAiAssist} disabled={aiLoading}>
               {aiLoading ? t("projects.aiThinking") : t("projects.aiAssist")}
             </Button>
-            {aiError && <p className="text-sm text-red-600 dark:text-red-400">{aiError}</p>}
+            {aiError && <p className="text-sm text-danger">{aiError}</p>}
           </div>
           <RoleEditor roles={roles} onChange={setRoles} />
           <SoftSkillPicker label={t("projects.preferredSoftSkills")} value={softSkills} onChange={setSoftSkills} />
-          {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+          {error && <p className="text-sm text-danger">{error}</p>}
           <Button type="submit">{t("projects.createProject")}</Button>
         </form>
       </Card>

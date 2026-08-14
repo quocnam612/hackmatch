@@ -131,7 +131,7 @@ export default function ProjectDetailPage() {
             </Badge>
           )}
           <span className="ml-auto flex items-center gap-2">
-            <span className="text-xs text-zinc-400">
+            <span className="text-xs text-muted/70">
               {project.followedBy.length} {t("common.followers")}
             </span>
             {db.currentUserId && (
@@ -142,11 +142,11 @@ export default function ProjectDetailPage() {
             )}
           </span>
         </div>
-        <p className="text-sm text-zinc-600 dark:text-zinc-300">{project.ideaDescription}</p>
+        <p className="text-sm text-muted">{project.ideaDescription}</p>
       </div>
 
       <Card className="flex flex-col gap-5">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">
           {t("projects.constraints")}
         </h3>
         {isOwner ? (
@@ -179,9 +179,9 @@ export default function ProjectDetailPage() {
                 const assignment = currentAssignments.find((a) => a.roleId === role.id);
                 const filled = assignment?.userId && assignment.coveredSkills.length === role.requiredSkills.length;
                 return (
-                  <div key={role.id} className="flex flex-col gap-1 rounded-xl border border-black/10 p-3 dark:border-white/10">
+                  <div key={role.id} className="flex flex-col gap-1 rounded-xl border border-surface-border p-3">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50">{role.name}</span>
+                      <span className="text-sm font-medium text-foreground">{role.name}</span>
                       <Badge tone={filled ? "success" : "neutral"}>{filled ? t("projects.filled") : t("projects.open")}</Badge>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
@@ -202,7 +202,7 @@ export default function ProjectDetailPage() {
                 ))}
               </div>
             )}
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="text-sm text-muted">
               {t("projects.teamSizeLimit")}: {project.teamSize}
             </p>
           </>
@@ -210,21 +210,21 @@ export default function ProjectDetailPage() {
       </Card>
 
       <Card className="flex flex-col gap-4">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">
           {t("projects.currentTeam")}
         </h3>
         {acceptedMembers.length === 0 ? (
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{t("projects.noMembersYet")}</p>
+          <p className="text-sm text-muted">{t("projects.noMembersYet")}</p>
         ) : (
           <ul className="flex flex-col gap-2">
             {currentAssignments
               .filter((a) => a.userId)
               .map((a) => (
-                <li key={a.roleId} className="rounded-xl border border-black/10 p-3 text-sm dark:border-white/10">
-                  <p className="font-medium text-zinc-900 dark:text-zinc-50">
+                <li key={a.roleId} className="rounded-xl border border-surface-border p-3 text-sm">
+                  <p className="font-medium text-foreground">
                     {a.roleName} — <UserLink userId={a.userId!} name={db.users.find((u) => u.id === a.userId)?.name ?? "?"} />
                   </p>
-                  <p className="text-zinc-500 dark:text-zinc-400">
+                  <p className="text-muted">
                     {t("projects.covers")}: {a.coveredSkills.join(", ") || "—"}
                   </p>
                 </li>
@@ -234,7 +234,7 @@ export default function ProjectDetailPage() {
       </Card>
 
       <Card className="flex flex-col gap-4">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">
           {t("projects.suggestedTeam")}
         </h3>
         {openRoles.length === 0 ? (
@@ -246,26 +246,26 @@ export default function ProjectDetailPage() {
             </Badge>
             <ul className="flex flex-col gap-2">
               {suggestionResult.roleAssignments.map((a) => (
-                <li key={a.roleId} className="rounded-xl border border-black/10 p-3 text-sm dark:border-white/10">
-                  <p className="font-medium text-zinc-900 dark:text-zinc-50">
+                <li key={a.roleId} className="rounded-xl border border-surface-border p-3 text-sm">
+                  <p className="font-medium text-foreground">
                     {a.roleName} — {a.userId ? <UserLink userId={a.userId} name={db.users.find((u) => u.id === a.userId)?.name ?? "?"} /> : "?"}
                   </p>
-                  <p className="text-zinc-500 dark:text-zinc-400">
+                  <p className="text-muted">
                     {t("projects.covers")}: {a.coveredSkills.join(", ") || "—"}
                   </p>
                 </li>
               ))}
             </ul>
-            <p className="text-sm text-zinc-600 dark:text-zinc-300">{suggestionResult.reason}</p>
+            <p className="text-sm text-muted">{suggestionResult.reason}</p>
           </div>
         ) : (
           <div className="flex flex-col gap-2">
             <Badge tone="danger">
               {t("projects.noValidTeam")} ({suggestionResult?.coveragePercent ?? 0}% {t("projects.coverage")})
             </Badge>
-            <p className="text-sm text-zinc-600 dark:text-zinc-300">{suggestionResult?.reason}</p>
+            <p className="text-sm text-muted">{suggestionResult?.reason}</p>
             {suggestionResult && suggestionResult.missingSkills.length > 0 && (
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="text-sm text-muted">
                 {t("projects.missing")}: {suggestionResult.missingSkills.join(", ")}
               </p>
             )}
@@ -275,23 +275,23 @@ export default function ProjectDetailPage() {
 
       {isOwner && openRoles.length > 0 && (
         <Card className="flex flex-col gap-4">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">
             {t("projects.potentialParticipants")}
           </h3>
           {potentialParticipants.every(({ ranked }) => ranked.length === 0) ? (
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">{t("findTeam.noCandidatesDesc")}</p>
+            <p className="text-sm text-muted">{t("findTeam.noCandidatesDesc")}</p>
           ) : (
             potentialParticipants.map(({ role, ranked }) =>
               ranked.length === 0 ? null : (
                 <div key={role.id} className="flex flex-col gap-2">
-                  <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{role.name}</p>
+                  <p className="text-sm font-medium text-foreground">{role.name}</p>
                   <ul className="flex flex-col gap-2">
                     {ranked.map(({ user: candidate, matchedSkills, missingSkills }) => {
                       const existingRequest = db.requests.find((r) => r.projectId === project.id && r.userId === candidate.id);
                       return (
                         <li
                           key={candidate.id}
-                          className="flex flex-col gap-2 rounded-xl border border-black/10 p-3 text-sm dark:border-white/10 sm:flex-row sm:items-center sm:justify-between"
+                          className="flex flex-col gap-2 rounded-xl border border-surface-border p-3 text-sm sm:flex-row sm:items-center sm:justify-between"
                         >
                           <div className="flex items-center gap-2">
                             <Avatar userId={candidate.id} name={candidate.name} size="sm" />
@@ -349,11 +349,11 @@ export default function ProjectDetailPage() {
 
       {isOwner ? (
         <Card className="flex flex-col gap-3">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-muted">
             {t("projects.joinRequests")}
           </h3>
           {requests.length === 0 ? (
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">{t("projects.noRequestsYet")}</p>
+            <p className="text-sm text-muted">{t("projects.noRequestsYet")}</p>
           ) : (
             <ul className="flex flex-col gap-2">
               {requests.map((r) => {
@@ -363,11 +363,11 @@ export default function ProjectDetailPage() {
                 return (
                   <li
                     key={r.id}
-                    className="flex items-center justify-between rounded-xl border border-black/10 p-3 text-sm dark:border-white/10"
+                    className="flex items-center justify-between rounded-xl border border-surface-border p-3 text-sm"
                   >
                     <span className="flex flex-col">
                       {u ? <UserLink userId={u.id} name={u.name} showAvatar /> : "?"}
-                      <span className="text-xs text-zinc-400">
+                      <span className="text-xs text-muted/70">
                         {roleName && `${roleName} · `}
                         {isInvite ? t("findTeam.invitedBy") : t("projects.applied")}
                       </span>
@@ -397,8 +397,8 @@ export default function ProjectDetailPage() {
       ) : (
         <div className="flex flex-col gap-3">
           {!db.currentUserId ? (
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
-              <Link href="/login" className="text-indigo-600 hover:underline dark:text-indigo-400">
+            <p className="text-sm text-muted">
+              <Link href="/login" className="text-accent hover:underline dark:text-accent">
                 {t("auth.login")}
               </Link>{" "}
               {t("common.loginToContinue")}
@@ -406,7 +406,7 @@ export default function ProjectDetailPage() {
           ) : myRequest ? (
             myRequest.direction === "project_to_candidate" && myRequest.status === "pending" ? (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-zinc-500 dark:text-zinc-400">{t("findTeam.youWereInvited")}</span>
+                <span className="text-sm text-muted">{t("findTeam.youWereInvited")}</span>
                 <Button variant="secondary" onClick={() => updateRequestStatus(myRequest.id, "accepted")}>
                   {t("common.accept")}
                 </Button>
@@ -423,11 +423,11 @@ export default function ProjectDetailPage() {
             <>
               {openRoles.length > 0 && (
                 <label className="flex flex-col gap-1.5">
-                  <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{t("projects.applyingFor")}</span>
+                  <span className="text-sm font-medium text-foreground">{t("projects.applyingFor")}</span>
                   <select
                     value={selectedRoleId}
                     onChange={(e) => setSelectedRoleId(e.target.value)}
-                    className="rounded-xl border border-black/10 bg-white px-3.5 py-2.5 text-sm text-zinc-900 outline-none ring-indigo-500 focus:ring-2 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100"
+                    className="rounded-xl border border-surface-border bg-black/[0.03] px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-accent/40 focus:bg-surface focus:ring-4 focus:ring-accent/15 dark:bg-white/[0.05] dark:focus:bg-surface"
                   >
                     <option value="">{t("projects.anyRole")}</option>
                     {openRoles.map((role) => (

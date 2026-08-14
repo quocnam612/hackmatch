@@ -16,17 +16,17 @@ export function ProjectCard({ project, owner }: { project: Project; owner?: User
       onClick={() => router.push(`/projects/${project.id}`)}
     >
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">{project.title}</h3>
+        <h3 className="text-base font-semibold text-foreground">{project.title}</h3>
         <Badge tone="accent">{t(`category.${project.category}`)}</Badge>
       </div>
-      <p className="line-clamp-2 text-sm text-zinc-500 dark:text-zinc-400">{project.ideaDescription}</p>
+      <p className="line-clamp-2 text-sm text-muted">{project.ideaDescription}</p>
       <div className="flex flex-wrap gap-1.5">
         {project.roles.slice(0, 3).map((role) => (
           <Badge key={role.id}>{role.name}</Badge>
         ))}
         {project.roles.length > 3 && <Badge>+{project.roles.length - 3}</Badge>}
       </div>
-      <div className="mt-auto flex items-center justify-between text-xs text-zinc-400">
+      <div className="mt-auto flex items-center justify-between text-xs text-muted/70">
         <span onClick={(e) => e.stopPropagation()}>
           {t("projects.hostedBy")} {owner ? <UserLink userId={owner.id} name={owner.name} /> : "?"}
         </span>

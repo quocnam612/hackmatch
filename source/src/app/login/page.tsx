@@ -58,7 +58,7 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+          {error && <p className="text-sm text-danger">{error}</p>}
           <Button type="submit" disabled={loading}>
             {loading ? t("common.saving") : t("auth.login")}
           </Button>
@@ -76,9 +76,9 @@ export default function LoginPage() {
                 type="button"
                 disabled={loading}
                 onClick={() => void attemptLogin(u.username, SEED_PASSWORD)}
-                className="rounded-full border border-black/10 bg-white px-3 py-1.5 text-sm text-zinc-700 hover:border-indigo-300 hover:text-indigo-600 disabled:opacity-50 dark:border-white/10 dark:bg-white/5 dark:text-zinc-300"
+                className="rounded-full border border-surface-border bg-surface px-3 py-1.5 text-sm text-foreground hover:border-accent/40 hover:text-accent disabled:opacity-50"
               >
-                {u.name} <span className="text-zinc-400">@{u.username}</span>
+                {u.name} <span className="text-muted/70">@{u.username}</span>
               </button>
             ))}
         </div>

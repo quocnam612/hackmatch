@@ -43,18 +43,18 @@ export function HardSkillInput({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{effectiveLabel}</span>
-      <div className="flex flex-wrap gap-2 rounded-xl border border-black/10 bg-white p-2.5 dark:border-white/10 dark:bg-white/5">
+      <span className="text-sm font-medium text-foreground">{effectiveLabel}</span>
+      <div className="flex flex-wrap gap-2 rounded-xl border border-surface-border bg-black/[0.03] p-2.5 dark:bg-white/[0.05]">
         {value.map((skill) => (
           <span
             key={skill}
-            className="inline-flex items-center gap-1.5 rounded-full bg-indigo-100 px-2.5 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-400"
+            className="inline-flex items-center gap-1.5 rounded-full bg-accent/12 px-2.5 py-1 text-xs font-medium text-accent"
           >
             {skill}
             <button
               type="button"
               onClick={() => remove(skill)}
-              className="text-indigo-500 hover:text-indigo-800 dark:hover:text-indigo-200"
+              className="text-accent hover:opacity-70"
               aria-label={`Remove ${skill}`}
             >
               ×
@@ -73,7 +73,7 @@ export function HardSkillInput({
             }
           }}
           placeholder={value.length === 0 ? "e.g. React, PostgreSQL" : "..."}
-          className="min-w-[8rem] flex-1 bg-transparent px-1 py-1 text-sm text-zinc-900 outline-none dark:text-zinc-100"
+          className="min-w-[8rem] flex-1 bg-transparent px-1 py-1 text-sm text-foreground outline-none"
         />
       </div>
       {suggestions.length > 0 && (
@@ -83,14 +83,14 @@ export function HardSkillInput({
               key={s}
               type="button"
               onClick={() => commit(s)}
-              className="rounded-full border border-black/10 px-2.5 py-1 text-xs text-zinc-600 hover:border-indigo-300 hover:text-indigo-600 dark:border-white/10 dark:text-zinc-400"
+              className="rounded-full border border-surface-border px-2.5 py-1 text-xs text-muted hover:border-accent/40 hover:text-accent"
             >
               + {s}
             </button>
           ))}
         </div>
       )}
-      {effectiveHint && <span className="text-xs text-zinc-500 dark:text-zinc-400">{effectiveHint}</span>}
+      {effectiveHint && <span className="text-xs text-muted">{effectiveHint}</span>}
     </div>
   );
 }
@@ -113,7 +113,7 @@ export function SoftSkillPicker({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{effectiveLabel}</span>
+      <span className="text-sm font-medium text-foreground">{effectiveLabel}</span>
       <div className="flex flex-wrap gap-2">
         {SOFT_SKILLS.map((skill) => {
           const active = value.includes(skill.id);
@@ -124,8 +124,8 @@ export function SoftSkillPicker({
               onClick={() => toggle(skill.id)}
               className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
                 active
-                  ? "border-indigo-500 bg-indigo-600 text-white"
-                  : "border-black/10 bg-white text-zinc-700 hover:border-indigo-300 dark:border-white/10 dark:bg-white/5 dark:text-zinc-300"
+                  ? "border-accent bg-accent text-white"
+                  : "border-surface-border bg-black/[0.03] text-foreground hover:border-accent/40 dark:bg-white/[0.05]"
               }`}
             >
               {t(`soft.${skill.id}`)}
@@ -155,7 +155,7 @@ export function LanguagePicker({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{effectiveLabel}</span>
+      <span className="text-sm font-medium text-foreground">{effectiveLabel}</span>
       <div className="flex flex-wrap gap-2">
         {LANGUAGES.map((lang) => {
           const active = value.includes(lang.id);
@@ -166,8 +166,8 @@ export function LanguagePicker({
               onClick={() => toggle(lang.id)}
               className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
                 active
-                  ? "border-indigo-500 bg-indigo-600 text-white"
-                  : "border-black/10 bg-white text-zinc-700 hover:border-indigo-300 dark:border-white/10 dark:bg-white/5 dark:text-zinc-300"
+                  ? "border-accent bg-accent text-white"
+                  : "border-surface-border bg-black/[0.03] text-foreground hover:border-accent/40 dark:bg-white/[0.05]"
               }`}
             >
               {t(`lang.${lang.id}`)}

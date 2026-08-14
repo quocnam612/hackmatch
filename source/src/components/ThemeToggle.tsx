@@ -41,9 +41,9 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Toggle theme"
-      className="relative inline-flex h-6 w-11 shrink-0 items-center rounded-full border border-black/10 bg-zinc-200 transition-colors dark:border-white/10 dark:bg-indigo-600"
+      className="relative inline-flex h-6 w-11 shrink-0 items-center rounded-full border border-surface-border bg-black/10 transition-colors dark:bg-accent"
     >
-      <span className="flex h-4.5 w-4.5 translate-x-1 items-center justify-center rounded-full bg-white text-zinc-500 shadow transition-transform dark:translate-x-6">
+      <span className="flex h-4.5 w-4.5 translate-x-1 items-center justify-center rounded-full bg-white text-zinc-500 shadow-sm transition-transform dark:translate-x-6">
         {/* Both icons always render — CSS (not JS branching) picks which is visible,
             so server and client markup are always identical and never mismatch. */}
         <SunIcon className="dark:hidden" />
